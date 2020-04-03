@@ -1,4 +1,7 @@
 {
-    "azureFunctions.projectLanguage": "C#Script",
-    "azureFunctions.projectRuntime": "beta"
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~2",
+    "azureFunctions.deploySubpath": "LoraKeysManagerFacade/bin/Release/netstandard2.0/publish",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "publish"
 }
