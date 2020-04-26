@@ -4,7 +4,7 @@
   "image": {
     "repository": "nurserysentrycontainerregistry.azurecr.io/sensordecodermodule",
     "tag": {
-      "version": "1.4.18",
+      "version": "1.4.19",
       "platforms": {
         "amd64": "./Dockerfile.amd64",
         "arm32v7": "./Dockerfile.arm32v7"
