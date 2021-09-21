@@ -58,8 +58,8 @@
               "httpSettings__enabled": {
                 "value": "false"
               },
-              "TwinManagerVersion": {
-                "value": "v2"
+              "AuthenticationMode": {
+                "value": "CloudAndScope"
               }
             }
           }
@@ -87,6 +87,9 @@
             },
             "version": "1.0",
             "env": {
+              "ENABLE_GATEWAY": {
+                "value": "false"
+              },
               "LOG_LEVEL": {
                 "value": "$NET_SRV_LOG_LEVEL"
               },

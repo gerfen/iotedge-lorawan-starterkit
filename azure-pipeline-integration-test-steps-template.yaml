@@ -1,6 +1,5 @@
 # File: azure-pipeline-integration-test-steps-template.yaml
 parameters:
-  platform: ''  
   testsToRun: 
   - OTAAJoinTest
   - ABPTest
@@ -12,6 +11,7 @@ parameters:
   - ClassCTest
   
 steps:
+
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
   displayName: 'Configure test in **/test/LoRaWan.IntegrationTest/appsettings.json'  
   inputs:

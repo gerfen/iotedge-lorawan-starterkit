@@ -16,8 +16,16 @@ namespace LoRaWan.Test.Shared
     using Newtonsoft.Json.Linq;
     using Xunit;
 
+    /// <summary>
+    /// Integration test class.
+    /// </summary>
     public abstract partial class IntegrationTestFixtureBase : IDisposable, IAsyncLifetime
     {
+        /// <summary>
+        /// expiry time for c2d.
+        /// </summary>
+        private const int C2dExpiryTime = 5;
+
         public const string MESSAGE_IDENTIFIER_PROPERTY_NAME = "messageIdentifier";
 
         RegistryManager registryManager;
@@ -133,6 +141,7 @@ namespace LoRaWan.Test.Shared
         public async Task SendCloudToDeviceMessageAsync(string deviceId, LoRaCloudToDeviceMessage message)
         {
             var msg = new Message(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message)));
+            msg.ExpiryTimeUtc = DateTime.UtcNow.AddMinutes(C2dExpiryTime);
 
             if (!string.IsNullOrEmpty(message.MessageId))
             {
@@ -142,7 +151,34 @@ namespace LoRaWan.Test.Shared
             await this.SendCloudToDeviceMessageAsync(deviceId, msg);
         }
 
-        public Task SendCloudToDeviceMessageAsync(string deviceId, string messageText, Dictionary<string, string> messageProperties = null) => this.SendCloudToDeviceMessageAsync(deviceId, null, messageText, messageProperties);
+        public async Task CleanupC2DDeviceQueueAsync(string deviceId)
+        {
+            try
+            {
+                using (var client = Microsoft.Azure.Devices.Client.DeviceClient.CreateFromConnectionString(this.Configuration.IoTHubConnectionString + $";DeviceId={deviceId}", Microsoft.Azure.Devices.Client.TransportType.Amqp))
+                {
+                    Microsoft.Azure.Devices.Client.Message msg = null;
+                    Console.WriteLine($"Cleaning up messages for device {deviceId}");
+                    do
+                    {
+                        msg = await client.ReceiveAsync(TimeSpan.FromSeconds(10));
+                        if (msg != null)
+                        {
+                            Console.WriteLine($"Found message to cleanup for device {deviceId}");
+                            await client.CompleteAsync(msg);
+                        }
+                    }
+                    while (msg != null);
+                }
+
+                Console.WriteLine($"Finished cleaning up messages for device {deviceId}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Problem while cleaning up messages for device {deviceId}");
+                Console.WriteLine(ex.ToString());
+            }
+        }
 
         public async Task SendCloudToDeviceMessageAsync(string deviceId, string messageId, string messageText, Dictionary<string, string> messageProperties = null)
         {
@@ -172,7 +208,7 @@ namespace LoRaWan.Test.Shared
 
         /// <summary>
         /// Singleton for the module client
-        /// Does not have to be thread-safe as CI does not run tests in parallel
+        /// Does not have to be thread-safe as CI does not run tests in parallel.
         /// </summary>
         public async Task<Microsoft.Azure.Devices.Client.ModuleClient> GetModuleClientAsync()
         {
