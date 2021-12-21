@@ -17,6 +17,7 @@ using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValve
 using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
 using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
 using AdeunisFieldTesterDecoder = Evolution.IoT.LoraWan.Decoders.Adeunis.FieldTesterDecoder;
+using MokoSmartPanicButtonDecoder = Evolution.IoT.LoraWan.Decoders.MokoSmart.PanicButtonDecoder;
 using Evolution.IoT.LoraWan.Decoders.TTN;
 using SensorDecoderModule.Classes;
 
@@ -98,6 +99,11 @@ internal static class LoraDecoders
     private static string DecodeAdeunisFieldTester(string devEUI, byte[] payload, uint fport)
     {
         return AdeunisFieldTesterDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMokoSmartPanicButton(string devEUI, byte[] payload, uint fport)
+    {
+        return MokoSmartPanicButtonDecoder.Decode(devEUI, payload, fport);
     }
 
 
