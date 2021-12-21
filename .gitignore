@@ -302,3 +302,4 @@ Tools/Cli-LoRa-Device-Provisioning/settings\.local\.json
 
 #codecs 
 **/codecs
+Samples/DecoderSample/nuget.config
