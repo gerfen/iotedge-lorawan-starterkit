@@ -13,6 +13,7 @@ using DigitalMatterOysterDecoder = Evolution.IoT.LoraWan.Decoders.DigitalMatter.
 using UsraLinkUC1152Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1152Decoder;
 using UsraLinkUC1114Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1114Decoder;
 using UrsaLinkSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500SMTCDecoder;
+using UrsaLinkTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em300THDecoder;
 using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
 using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
 using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
@@ -145,6 +146,11 @@ internal static class LoraDecoders
     private static string DecodeUrsaLinkSoilMoisture(string devEUI, byte[] payload, uint fport)
     {
         return UrsaLinkSoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeUrsaLinkTemperatureHumidity(string devEUI, byte[] payload, uint fport)
+    {
+        return UrsaLinkTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecodeStregaSmartValve(string devEUI, byte[] payload, uint fport)
