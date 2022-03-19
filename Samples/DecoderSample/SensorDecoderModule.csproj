@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Evolution.IoT.LoraWan.Decoders" Version="1.0.20" />
+    <PackageReference Include="Evolution.IoT.LoraWan.Decoders" Version="1.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>

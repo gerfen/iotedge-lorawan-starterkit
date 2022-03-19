@@ -14,6 +14,9 @@ using UsraLinkUC1152Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1152Deco
 using UsraLinkUC1114Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1114Decoder;
 using UrsaLinkSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500SMTCDecoder;
 using UrsaLinkTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em300THDecoder;
+using MilesiteUC1114Decoder = Evolution.IoT.LoraWan.Decoders.Milesite.Uc1114Decoder;
+using MilesiteSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em500SMTCDecoder;
+using MilesiteTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em300THDecoder;
 using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
 using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
 using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
@@ -151,6 +154,21 @@ internal static class LoraDecoders
     private static string DecodeUrsaLinkTemperatureHumidity(string devEUI, byte[] payload, uint fport)
     {
         return UrsaLinkTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteLinkUc1114(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteUC1114Decoder.Decode(devEUI, payload, fport);
+    }
+    
+    private static string DecodeMilesiteSoilMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteSoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteTemperatureHumidity(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecodeStregaSmartValve(string devEUI, byte[] payload, uint fport)
