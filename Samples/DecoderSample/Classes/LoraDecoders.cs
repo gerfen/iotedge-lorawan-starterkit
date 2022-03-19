@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Evolution.IoT.LoraWan.Decoders.Adeunis;
 using Newtonsoft.Json;
 using DecentlabWaterLevelSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WaterLevelSensorDecoder;
 using DecentlabWeatherStationSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WeatherStationSensorDecoder;
@@ -75,12 +74,24 @@ internal static class LoraDecoders
         return ThingsNodeDecoder.Decode(devEUI, payload, fport);
     }
 
+    [Obsolete("This decoding name is obsolte and will be removed in a future release.")]
     private static string DecoderLansitecTemperatureHumiditySensor(string devEUI, byte[] payload, uint fport)
     {
         return LansitecTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
     }
 
+    private static string DecodeLansitecTemperatureHumiditySensor(string devEUI, byte[] payload, uint fport)
+    {
+        return LansitecTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
+    }
+
+    [Obsolete("This decoding name is obsolte and will be removed in a future release.")]
     private static string DecoderDecentlabWaterLevelSensor(string devEUI, byte[] payload, uint fport)
+    {
+        return DecentlabWaterLevelSensorDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeDecentlabWaterLevelSensor(string devEUI, byte[] payload, uint fport)
     {
         return DecentlabWaterLevelSensorDecoder.Decode(devEUI, payload, fport);
     }
@@ -90,7 +101,13 @@ internal static class LoraDecoders
         return DecentlabSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
+    [Obsolete("This decoding name is obsolte and will be removed in a future release.")]
     private static string DecoderDecentlabWeatherStationSensor(string devEUI, byte[] payload, uint fport)
+    {
+        return DecentlabWeatherStationSensorDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeDecentlabWeatherStationSensor(string devEUI, byte[] payload, uint fport)
     {
         return DecentlabWeatherStationSensorDecoder.Decode(devEUI, payload, fport);
     }
@@ -110,8 +127,13 @@ internal static class LoraDecoders
         return MokoSmartPanicButtonDecoder.Decode(devEUI, payload, fport);
     }
 
-
+    [Obsolete("This decoding name is obsolte and will be removed in a future release.")]
     private static string DecoderNetvoxTemperatureHumidity(string devEUI, byte[] payload, uint fport)
+    {
+        return NetvoxTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeNetvoxTemperatureHumidity(string devEUI, byte[] payload, uint fport)
     {
         return NetvoxTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
     }
@@ -141,6 +163,7 @@ internal static class LoraDecoders
         return UsraLinkUC1114Decoder.Decode(devEUI, payload, fport);
     }
 
+    [Obsolete("This decoding name is obsolte and will be removed in a future release.")]
     private static string DecoderUrsaLinkUc1114(string devEUI, byte[] payload, uint fport)
     {
         return UsraLinkUC1114Decoder.Decode(devEUI, payload, fport);
