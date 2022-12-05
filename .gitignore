@@ -288,7 +288,7 @@ __pycache__/
 *.xsd.cs
 
 Doc
-.vscode/
+
 /LoRaEngine/modules/LoRaSimulator/Logger
 /LoRaEngine/modules/LoRaSimulator/LoraTools
 
@@ -302,3 +302,4 @@ Tools/Cli-LoRa-Device-Provisioning/settings\.local\.json
 
 #codecs 
 **/codecs
+/nuget.config
