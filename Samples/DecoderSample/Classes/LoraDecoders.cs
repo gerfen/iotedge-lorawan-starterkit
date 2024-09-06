@@ -16,6 +16,8 @@ using MilesitePipePressureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em50
 using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
 using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
 using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
+using DraginoS31LbDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.S31LbDecoder;
+using DraginoSDI12Decoder = Evolution.IoT.LoraWan.Decoders.Dragino.SDI12Decoder;
 using Evolution.IoT.LoraWan.Decoders.TTN;
 using SensorDecoderModule.Classes;
 
@@ -92,6 +94,16 @@ internal static class LoraDecoders
     private static string DecodeDraginoLgt92GpsButton(string devEUI, byte[] payload, uint fport)
     {
         return DraginoLgt92GpsButtonDecoder.Decode(devEUI, payload, fport);
+    }
+
+     private static string DecodeDraginoS31LbTemperatureHumidity(string devEUI, byte[] payload, uint fport)
+    {
+        return DraginoS31LbDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeDraginoSDI12(string devEUI, byte[] payload, uint fport)
+    {
+        return DraginoSDI12Decoder.Decode(devEUI, payload, fport);
     }
 
 
