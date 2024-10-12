@@ -17,7 +17,9 @@ using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValve
 using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
 using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
 using DraginoS31LbDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.S31LbDecoder;
-using DraginoSDI12Decoder = Evolution.IoT.LoraWan.Decoders.Dragino.SDI12Decoder;
+using GroPointSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.GroPoint.GroPointSoilMoistureDecoder;
+using AquaCheck11200612SoilMoistureDecoder =Evolution.IoT.LoraWan.Decoders.AquaCheck.AquaCheck11200612SoilMoistureDecoder;
+using DraginoLLMS01LeafMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.Llms01LeafMoistureDecoder;
 using Evolution.IoT.LoraWan.Decoders.TTN;
 using SensorDecoderModule.Classes;
 
@@ -101,11 +103,20 @@ internal static class LoraDecoders
         return DraginoS31LbDecoder.Decode(devEUI, payload, fport);
     }
 
-    private static string DecodeDraginoSDI12(string devEUI, byte[] payload, uint fport)
+    private static string DecodeGroPointSoilMoisture(string devEUI, byte[] payload, uint fport)
     {
-        return DraginoSDI12Decoder.Decode(devEUI, payload, fport);
+        return GroPointSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
+    private static string DecodeAquaCheck11200612SoilMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return AquaCheck11200612SoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeDraginoLLMS01LeafMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return DraginoLLMS01LeafMoistureDecoder.Decode(devEUI, payload, fport);
+    }
 
     private static string DecoderNetvoxTemperatureHumidity(string devEUI, byte[] payload, uint fport)
     {
