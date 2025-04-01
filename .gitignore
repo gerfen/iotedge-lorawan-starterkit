@@ -311,3 +311,4 @@ Tools/Cli-LoRa-Device-Provisioning/settings\.local\.json
 Tools/BasicStation-Certificates-Generation/ca
 Tools/BasicStation-Certificates-Generation/client
 Tools/BasicStation-Certificates-Generation/server
+/Samples/DecoderSample/nuget.config
