@@ -29,6 +29,7 @@ using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT9
 using DraginoS31LbDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.S31LbDecoder;
 using GroPointSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.GroPoint.GroPointSoilMoistureDecoder;
 using AquaCheck11200612SoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.AquaCheck.AquaCheck11200612SoilMoistureDecoder;
+using MilesiteUC501AquaCheckSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.MilesiteUC501AquaCheckSoilMoistureDecoder;
 using DraginoLLMS01LeafMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.Llms01LeafMoistureDecoder;
 using Evolution.IoT.LoraWan.Decoders.TTN;
 using SensorDecoderModule.Classes;
@@ -121,6 +122,11 @@ internal static class LoraDecoders
     private static string DecodeAquaCheck11200612SoilMoisture(string devEUI, byte[] payload, uint fport)
     {
         return AquaCheck11200612SoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteUC501AquaCheckSoilMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteUC501AquaCheckSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecodeDraginoLLMS01LeafMoisture(string devEUI, byte[] payload, uint fport)
