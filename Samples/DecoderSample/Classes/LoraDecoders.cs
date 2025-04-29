@@ -11,28 +11,98 @@
 using System;
 using System.Text;
 using Newtonsoft.Json;
+
+//using DecentlabWaterLevelSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WaterLevelSensorDecoder;
+//using DecentlabWeatherStationSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WeatherStationSensorDecoder;
+//using DecentlabSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.Trs12SoilMoistureDecoder;
+//using LansitecTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Lansitec.TemperatureHumidityDecoder;
+//using NetvoxTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Netvox.TemperatureHumidityDecoder;
+// SensumTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Sensum.TemperatureHumidityDecoder;
+//using SensumSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Sensum.SoilMoistureDecoder;
+//using DigitalMatterOysterDecoder = Evolution.IoT.LoraWan.Decoders.DigitalMatter.OysterDecoder;
+//using UsraLinkUC1152Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1152Decoder;
+//using UsraLinkUC1114Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1114Decoder;
+//using UrsaLinkSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500SMTCDecoder;
+//using MilesitePipePressureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500PipePressureDecoder;
+//using MilesiteTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em300THDecoder;
+//using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
+//using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
+//using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
+
+//using Evolution.IoT.LoraWan.Decoders.TTN;
+using SensorDecoderModule.Classes;
+
+
+using AdeunisFieldTesterDecoder = Evolution.IoT.LoraWan.Decoders.Adeunis.FieldTesterDecoder;
+using AquaCheck11200612SoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.AquaCheck.AquaCheck11200612SoilMoistureDecoder;
+
+
 using DecentlabWaterLevelSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WaterLevelSensorDecoder;
 using DecentlabWeatherStationSensorDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.WeatherStationSensorDecoder;
 using DecentlabSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Decentlab.Trs12SoilMoistureDecoder;
+
+using DigitalMatterOysterDecoder = Evolution.IoT.LoraWan.Decoders.DigitalMatter.OysterDecoder;
+
+
+using DraginoS31LbDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.S31LbDecoder;
+using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
+using DraginoLLMS01LeafMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.Llms01LeafMoistureDecoder;
+using DraginoSDI12Decoder = Evolution.IoT.LoraWan.Decoders.Dragino.SDI12Decoder;
+
+
+using GroPointSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.GroPoint.GroPointSoilMoistureDecoder;
+
 using LansitecTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Lansitec.TemperatureHumidityDecoder;
+
+using MilesitePipePressureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500PipePressureDecoder;
+using MilesiteSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em500SMTCDecoder;
+using MilesiteTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em300THDecoder;
+using MilesiteEM320TemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em320THDecoder;
+using MilesiteUC1114Decoder = Evolution.IoT.LoraWan.Decoders.Milesite.Uc1114Decoder;
+using MilesiteUC501AquaCheckSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.MilesiteUC501AquaCheckSoilMoistureDecoder;
+
+using MokoSmartPanicButtonDecoder = Evolution.IoT.LoraWan.Decoders.MokoSmart.PanicButtonDecoder;
+
 using NetvoxTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Netvox.TemperatureHumidityDecoder;
 using SensumTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Sensum.TemperatureHumidityDecoder;
 using SensumSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Sensum.SoilMoistureDecoder;
-using DigitalMatterOysterDecoder = Evolution.IoT.LoraWan.Decoders.DigitalMatter.OysterDecoder;
+using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
+using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
+
 using UsraLinkUC1152Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1152Decoder;
 using UsraLinkUC1114Decoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Uc1114Decoder;
 using UrsaLinkSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500SMTCDecoder;
-using MilesitePipePressureDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em500PipePressureDecoder;
-using StregaSmartValveDecoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveDecoder;
-using StregaSmartValveV4Decoder = Evolution.IoT.LoraWan.Decoders.Strega.SmartValveV4Decoder;
-using DraginoLgt92GpsButtonDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.LGT92GpsDecoder;
-using DraginoS31LbDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.S31LbDecoder;
-using GroPointSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.GroPoint.GroPointSoilMoistureDecoder;
-using AquaCheck11200612SoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.AquaCheck.AquaCheck11200612SoilMoistureDecoder;
-using MilesiteUC501AquaCheckSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.MilesiteUC501AquaCheckSoilMoistureDecoder;
-using DraginoLLMS01LeafMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Dragino.Llms01LeafMoistureDecoder;
-using Evolution.IoT.LoraWan.Decoders.TTN;
-using SensorDecoderModule.Classes;
+using UrsaLinkTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.UrsaLink.Em300THDecoder;
+
+using ThingsNodeDecoder = Evolution.IoT.LoraWan.Decoders.TTN.ThingsNodeDecoder;
+
+
+
+/*
+*AdeunisFieldTester
+*AquaCheckSoilMoisture
+CurtainController
+*DecentlabT12SoilMoisture
+*DecentlabWaterLevel
+*DecentlabWeatherStation
+*DigitalMatterOyster
+*DraginoLgt92GpsButton
+*DraginoLLMS01LeafMoisture
+*DraginoS31LbTemperatureHumidity
+DraginoSDI12
+*GroPointSoilMoisture
+*MilesitePipePressure
+*MilesiteTemperatureHumidity
+*MokoSmartPanicButton
+*NetvoxTemperatureHumidity
+*SensumSoilMoisture
+SensumTemperatureHumidity
+*StregaSmartValve
+*ThingsNode
+*UrsalinkSoilMoisture
+*UrsalinkUc1114
+*UrsalinkUc1152
+ */
 
 internal static class LoraDecoders
 {
@@ -79,6 +149,17 @@ internal static class LoraDecoders
     }
 
     // Add decoders methods here...
+
+    private static string DecodeAdeunisFieldTester(string devEUI, byte[] payload, uint fport)
+    {
+        return AdeunisFieldTesterDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeAquaCheck11200612SoilMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return AquaCheck11200612SoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
     private static string DecoderTheThingsNodeSensor(string devEUI, byte[] payload, uint fport)
     {
         return ThingsNodeDecoder.Decode(devEUI, payload, fport);
@@ -104,6 +185,16 @@ internal static class LoraDecoders
         return DecentlabWeatherStationSensorDecoder.Decode(devEUI, payload, fport);
     }
 
+    private static string DecodeDigitalMatterOyster(string devEUI, byte[] payload, uint fport)
+    {
+        return DigitalMatterOysterDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeDraginoLLMS01LeafMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return DraginoLLMS01LeafMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
     private static string DecodeDraginoLgt92GpsButton(string devEUI, byte[] payload, uint fport)
     {
         return DraginoLgt92GpsButtonDecoder.Decode(devEUI, payload, fport);
@@ -114,24 +205,49 @@ internal static class LoraDecoders
         return DraginoS31LbDecoder.Decode(devEUI, payload, fport);
     }
 
+    private static string DecodeDraginoSDI12(string devEUI, byte[] payload, uint fport)
+    {
+        return DraginoSDI12Decoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteLinkUc1114(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteUC1114Decoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteSoilMoisture(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteSoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMokoSmartPanicButton(string devEUI, byte[] payload, uint fport)
+    {
+        return MokoSmartPanicButtonDecoder.Decode(devEUI, payload, fport);
+    }
+
     private static string DecodeGroPointSoilMoisture(string devEUI, byte[] payload, uint fport)
     {
         return GroPointSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
-    private static string DecodeAquaCheck11200612SoilMoisture(string devEUI, byte[] payload, uint fport)
+    private static string DecodeMilesiteTemperatureHumidity(string devEUI, byte[] payload, uint fport)
     {
-        return AquaCheck11200612SoilMoistureDecoder.Decode(devEUI, payload, fport);
+        return MilesiteTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteEM320TemperatureHumidity(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteEM320TemperatureHumidityDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesitePipePressure(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesitePipePressureDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecodeMilesiteUC501AquaCheckSoilMoisture(string devEUI, byte[] payload, uint fport)
     {
         return MilesiteUC501AquaCheckSoilMoistureDecoder.Decode(devEUI, payload, fport);
-    }
-
-    private static string DecodeDraginoLLMS01LeafMoisture(string devEUI, byte[] payload, uint fport)
-    {
-        return DraginoLLMS01LeafMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecoderNetvoxTemperatureHumidity(string devEUI, byte[] payload, uint fport)
@@ -149,9 +265,14 @@ internal static class LoraDecoders
         return SensumSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
-    private static string DecodeDigitalMatterOyster(string devEUI, byte[] payload, uint fport)
+    private static string DecodeStregaSmartValve(string devEUI, byte[] payload, uint fport)
     {
-        return DigitalMatterOysterDecoder.Decode(devEUI, payload, fport);
+        return StregaSmartValveDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeStregaSmartValveV4(string devEUI, byte[] payload, uint fport)
+    {
+        return StregaSmartValveV4Decoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecodeUrsaLinkUc1152(string devEUI, byte[] payload, uint fport)
@@ -174,19 +295,9 @@ internal static class LoraDecoders
         return UrsaLinkSoilMoistureDecoder.Decode(devEUI, payload, fport);
     }
 
-    private static string DecodeMilesitePipePressure(string devEUI, byte[] payload, uint fport)
+    private static string DecodeUrsaLinkTemperatureHumidity(string devEUI, byte[] payload, uint fport)
     {
-        return MilesitePipePressureDecoder.Decode(devEUI, payload, fport);
+        return UrsaLinkTemperatureHumidityDecoder.Decode(devEUI, payload, fport);
     }
 
-
-    private static string DecodeStregaSmartValve(string devEUI, byte[] payload, uint fport)
-    {
-        return StregaSmartValveDecoder.Decode(devEUI, payload, fport);
-    }
-
-    private static string DecodeStregaSmartValveV4(string devEUI, byte[] payload, uint fport)
-    {
-        return StregaSmartValveV4Decoder.Decode(devEUI, payload, fport);
-    }
 }

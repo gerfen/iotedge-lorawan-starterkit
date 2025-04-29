@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build amd64 module",
+        "type": "shell",
+        "command": "docker buildx build --platform linux/amd64 -t nurserysentrycontainerregistry.azurecr.io/sensordecodermodule:3.3-amd64 -f ./Dockerfile.amd64 --push ../../"
+      },
+      {
+        "label": "Build arm32v7 module",
+        "type": "shell",
+        "command": "docker buildx build --platform linux/arm/v7 -t nurserysentrycontainerregistry.azurecr.io/sensordecodermodule:3.3-arm32v7 -f ./Dockerfile.arm32v7 --push ../../"
+      },
+      {
+        "label": "Build arm64v8 module",
+        "type": "shell",
+        "command": "docker buildx build --platform linux/arm64 -t nurserysentrycontainerregistry.azurecr.io/sensordecodermodule:3.3-arm64v8 -f ./Dockerfile.arm64v8 --push ../../"
+      }
+    ]
+  }

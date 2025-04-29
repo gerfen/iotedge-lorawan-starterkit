@@ -3,14 +3,11 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /build/Samples/DecoderSample/
 COPY ./Samples/DecoderSample ./
 
-# RUN dotnet restore --verbosity detailed
-#RUN dotnet restore --ignore-failed-sources
-RUN dotnet restore --interactive
+RUN dotnet restore
 
-RUN dotnet publish -c Release -o out --interactive
+RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim-arm32v7 AS runtime
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim-arm32v7 AS runtime
 WORKDIR /app
 COPY --from=build-env /build/Samples/DecoderSample/out/* ./
 ENTRYPOINT ["dotnet", "SensorDecoderModule.dll"]
