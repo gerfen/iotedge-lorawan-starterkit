@@ -56,6 +56,7 @@ namespace LoRaWan.NetworkServer
             if (!string.IsNullOrEmpty(json))
             {
                 ReceivedLoRaCloudToDeviceMessage c2d;
+                this.logger.LogError($"Received cloud to device message from direct method: {json}");
 
                 try
                 {
@@ -63,7 +64,7 @@ namespace LoRaWan.NetworkServer
                 }
                 catch (JsonException ex)
                 {
-                    this.logger.LogError(ex, $"Impossible to parse Json for c2d message, error: '{ex}'");
+                    this.logger.LogError(ex, $"Impossible to parse Json for c2d message, error: '{ex}, {json} '");
                     return HttpStatusCode.BadRequest;
                 }
 
