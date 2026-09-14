@@ -11,6 +11,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+COPY COPY ["./nuget.config", "./root/.nuget/NuGet/NuGet.Config"]
 COPY ["nuget.config", "."]
 COPY ["SensorDecoderModule.csproj", "."]
 RUN dotnet restore "./SensorDecoderModule.csproj"
