@@ -60,6 +60,7 @@ using MilesiteTemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesi
 using MilesiteEM320TemperatureHumidityDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.Em320THDecoder;
 using MilesiteUC1114Decoder = Evolution.IoT.LoraWan.Decoders.Milesite.Uc1114Decoder;
 using MilesiteUC501AquaCheckSoilMoistureDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.MilesiteUC501AquaCheckSoilMoistureDecoder;
+using MilesiteWts506WeatherStationDecoder = Evolution.IoT.LoraWan.Decoders.Milesite.MilesiteWts506WeatherStationDecoder;
 
 using MokoSmartPanicButtonDecoder = Evolution.IoT.LoraWan.Decoders.MokoSmart.PanicButtonDecoder;
 
@@ -248,6 +249,11 @@ internal static class LoraDecoders
     private static string DecodeMilesiteUC501AquaCheckSoilMoisture(string devEUI, byte[] payload, uint fport)
     {
         return MilesiteUC501AquaCheckSoilMoistureDecoder.Decode(devEUI, payload, fport);
+    }
+
+    private static string DecodeMilesiteWts506WeatherStation(string devEUI, byte[] payload, uint fport)
+    {
+        return MilesiteWts506WeatherStationDecoder.Decode(devEUI, payload, fport);
     }
 
     private static string DecoderNetvoxTemperatureHumidity(string devEUI, byte[] payload, uint fport)
